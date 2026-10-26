@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Portfolio d'Oussama Dahri : développement mobile, IA et embarqué.">
+<title>Oussama Dahri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one centered column (max 1120px). Hero = big name beside a phone-shaped portrait; then 4 numbered overview tiles linking to sections; contact closes the page. */
+:root{
+  --bg:#f6f7fb; --surface:#ffffff; --ink:#101633; --muted:#5b6382; --line:#e2e5ef;
+  --accent:#2f54eb; --accent-ink:#ffffff; --accent-soft:#e8edff;
+  --sun:#ffc531; --sun-ink:#3b2a00; --ai:#7b4ce0; --ai-soft:#f0eaff;
+  --phone:#101633;
+  --f-display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --f-body:"Manrope","Segoe UI",system-ui,sans-serif;
+  --f-mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0c1022; --surface:#151a33; --ink:#eef1ff; --muted:#a2a9c6; --line:#262c4a;
+  --accent:#7d97ff; --accent-ink:#0c1022; --accent-soft:#1d2550;
+  --sun:#ffd25c; --sun-ink:#2a1e00; --ai:#b79bff; --ai-soft:#251d47; --phone:#04060f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1022; --surface:#151a33; --ink:#eef1ff; --muted:#a2a9c6; --line:#262c4a;
+  --accent:#7d97ff; --accent-ink:#0c1022; --accent-soft:#1d2550;
+  --sun:#ffd25c; --sun-ink:#2a1e00; --ai:#b79bff; --ai-soft:#251d47; --phone:#04060f; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:20;background:var(--bg)}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:-999px}.skip:focus{left:16px;top:16px;background:var(--accent);color:var(--accent-ink);padding:8px 12px;z-index:30}
+.in{max-width:1120px;margin:0 auto;padding-left:max(20px, env(safe-area-inset-left,0px));padding-right:max(20px, env(safe-area-inset-right,0px))}
+/* nav */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+.logo{font-family:var(--f-display);font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.logo i{width:26px;height:26px;border-radius:8px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-style:normal;font-size:.75rem}
+header nav{display:flex;gap:2px}
+header nav a{font-size:.9rem;font-weight:600;color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:999px}
+header nav a:hover{color:var(--ink);background:var(--surface)}
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:64px;align-items:center;padding-block:72px 64px}
+.avail{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:.9rem;background:var(--surface);border:1px solid var(--line);padding:7px 14px 7px 10px;border-radius:999px}
+.avail::before{content:"";width:9px;height:9px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.18)}
+.name{font-family:var(--f-display);font-weight:800;font-size:clamp(2.6rem,7.4vw,5.4rem);line-height:.95;letter-spacing:-.035em;margin:24px 0 0;text-transform:uppercase;overflow-wrap:anywhere}
+.name span{display:block;color:var(--accent)}
+.rotor{margin-top:22px;font-size:clamp(1.1rem,2.2vw,1.45rem);font-weight:600;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.rotor .fixed{color:var(--muted);font-weight:500;transition:opacity .3s}
+.stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.stack span{font-family:var(--f-mono);font-size:.82rem;padding:4px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--muted)}
+.stack span:not(:last-child)::after{content:""}
+.rotor .word{background:var(--sun);color:var(--sun-ink);padding:2px 12px;border-radius:10px;font-weight:700;transition:opacity .3s}
+.pitch{max-width:58ch;color:var(--muted);margin:20px 0 0;font-size:1.05rem}
+.pitch b{color:var(--ink)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{font:inherit;font-weight:700;font-size:.95rem;border-radius:999px;padding:12px 22px;text-decoration:none;border:2px solid var(--ink);color:var(--ink);background:transparent;cursor:pointer}
+.btn.primary{background:var(--ink);color:var(--bg)}
+.btn:hover{transform:translateY(-1px)}
+/* phone portrait */
+.phone{width:100%;max-width:220px;aspect-ratio:9/18;background:var(--phone);border-radius:36px;padding:9px;position:relative;box-shadow:0 30px 60px -20px rgba(16,22,51,.45);justify-self:center}
+.phone::before{content:"";position:absolute;top:17px;left:50%;transform:translateX(-50%);width:62px;height:17px;border-radius:10px;background:var(--phone);z-index:2}
+.screen{width:100%;height:100%;border-radius:28px;overflow:hidden;position:relative;background:var(--accent)}
+.screen img{width:100%;height:100%;object-fit:cover;object-position:center 12%;display:block}
+.chip-float{position:absolute;font-family:var(--f-mono);font-size:.72rem;font-weight:500;padding:6px 12px;border-radius:999px;box-shadow:0 10px 24px -10px rgba(16,22,51,.4);white-space:nowrap}
+.cf1{left:-38px;top:18%;background:var(--surface);color:var(--accent);border:1px solid var(--line)}
+.cf2{right:-30px;top:52%;background:var(--ai);color:#fff}
+.cf3{left:-24px;bottom:12%;background:var(--sun);color:var(--sun-ink)}
+/* overview tiles */
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;padding-bottom:88px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px;text-decoration:none;color:var(--ink);display:grid;gap:10px;align-content:start;transition:transform .2s,border-color .2s}
+.tile:hover{transform:translateY(-4px);border-color:var(--accent)}
+.tile .n{font-family:var(--f-display);font-weight:800;font-size:2.2rem;color:var(--accent);line-height:1}
+.tile .t{font-family:var(--f-display);font-weight:700;font-size:1.05rem}
+.tile .s{font-size:.9rem;color:var(--muted)}
+.tile .go{font-weight:700;font-size:.85rem;color:var(--accent);margin-top:4px}
+/* sections */
+section{padding-block:64px;border-top:1px solid var(--line);scroll-margin-top:72px}
+.sh{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 18px;align-items:end;margin-bottom:32px}
+.sh .n{font-family:var(--f-display);font-weight:800;font-size:3.2rem;line-height:.85;color:var(--accent-soft);-webkit-text-stroke:2px var(--accent)}
+.sh h2{font-family:var(--f-display);font-weight:700;font-size:clamp(1.6rem,3.6vw,2.3rem);margin:0;letter-spacing:-.02em;line-height:1.1;text-wrap:balance}
+.sh p{grid-column:2;margin:0;color:var(--muted)}
+/* experience */
+.job{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:28px;display:grid;grid-template-columns:200px minmax(0,1fr);gap:28px}
+.job .meta{display:grid;gap:6px;align-content:start}
+.when{font-family:var(--f-mono);font-size:.85rem;color:var(--muted)}
+.org{font-family:var(--f-display);font-weight:700;font-size:1.2rem}
+.job h3{font-size:1.15rem;margin:0 0 12px;font-weight:700}
+ul.dots{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+ul.dots li{padding-left:20px;position:relative}
+ul.dots li::before{content:"";position:absolute;left:2px;top:.62em;width:8px;height:8px;border-radius:3px;background:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chip{font-family:var(--f-mono);font-size:.76rem;padding:4px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.chip.a{background:var(--ai-soft);color:var(--ai)}
+/* projects */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.filters button{font:inherit;font-weight:600;font-size:.88rem;border:1px solid var(--line);background:var(--surface);color:var(--muted);padding:7px 16px;border-radius:999px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;gap:16px}
+.proj{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:12px;min-width:0;height:100%}
+.proj > .chips:last-child,.proj > .big:last-child{margin-top:auto}
+.proj .side{display:flex;flex-direction:column;gap:12px}
+.ph{display:flex;gap:14px;align-items:center}
+.ico{width:56px;height:56px;border-radius:15px;flex:none;object-fit:cover}
+.mono{width:56px;height:56px;border-radius:15px;flex:none;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;color:#fff;font-size:1.05rem}
+.proj h3{font-family:var(--f-display);font-weight:700;font-size:1.15rem;margin:0;line-height:1.2}
+.ctx{font-size:.85rem;color:var(--muted)}
+.proj p{margin:0}
+.wip{display:inline-flex;align-items:center;gap:8px;width:fit-content;font-family:var(--f-mono);font-size:.78rem;font-weight:500;padding:5px 12px;border-radius:999px;background:var(--sun);color:var(--sun-ink)}
+.wip::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor;animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.25}}
+.big{display:flex;align-items:baseline;gap:10px;background:var(--sun);color:var(--sun-ink);border-radius:14px;padding:12px 16px;font-weight:700}
+.big b{font-family:var(--f-display);font-size:1.8rem;line-height:1}
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.sk{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px;display:grid;gap:12px;align-content:start}
+.sk h3{font-family:var(--f-display);font-weight:700;font-size:1rem;margin:0}
+.sk ul{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:.95rem}
+.sk li{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dashed var(--line);padding-bottom:6px}
+.sk li:last-child{border:0}
+.qh{font-family:var(--f-display);font-weight:700;font-size:1.2rem;margin:36px 0 14px}
+.quals{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px;display:grid;gap:8px;align-content:start;border-top:4px solid var(--accent)}
+.q b{font-family:var(--f-display);font-weight:700;font-size:1rem}
+.q p{margin:0;font-size:.95rem;color:var(--muted)}
+/* education */
+.edu{display:grid;gap:12px}
+.edu .row{display:grid;grid-template-columns:140px minmax(0,1fr);gap:18px;padding:20px 22px;background:var(--surface);border:1px solid var(--line);border-radius:18px;align-items:baseline}
+.edu b{display:block;font-weight:700}
+.edu span{color:var(--muted);font-size:.92rem}
+.langs{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.lang{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:.9rem}
+.lang b{font-weight:700}
+/* contact */
+.contact{background:var(--ink);color:var(--bg);margin-top:24px}
+.contact .in{padding-block:80px}
+.contact .k{font-family:var(--f-mono);font-size:.85rem;opacity:.7}
+.contact h2{font-family:var(--f-display);font-weight:800;font-size:clamp(1.9rem,5vw,3.4rem);line-height:1.05;letter-spacing:-.03em;margin:16px 0 30px;max-width:18ch;text-wrap:balance}
+.cards{display:flex;flex-wrap:wrap;gap:12px}
+.cbox{display:flex;align-items:center;gap:12px;border:1px solid color-mix(in srgb,var(--bg) 25%,transparent);border-radius:16px;padding:12px 14px 12px 18px;min-width:0}
+.cbox span{overflow-wrap:anywhere;font-weight:600}
+.cbox a{color:var(--sun);font-weight:700}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cbox a{color:var(--accent)}}
+:root[data-theme="dark"] .cbox a{color:var(--accent)}
+.copy{font:inherit;font-weight:700;font-size:.8rem;border:0;border-radius:999px;padding:7px 14px;cursor:pointer;background:var(--sun);color:var(--sun-ink);flex:none}
+.offscreen{border-top:1px solid var(--line)}
+.offscreen .in{padding-block:36px;display:flex;justify-content:center}
+.os-k{color:var(--muted);font-weight:600}
+.os-go{font-weight:800;text-decoration:none;background:var(--sun);color:var(--sun-ink);border-radius:999px;padding:12px 22px;transition:transform .2s;white-space:nowrap}
+.os-go:hover{transform:translateY(-2px)}
+footer{padding-block:22px;font-size:.85rem;color:var(--muted)}
+footer .in{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
+@media (max-width:980px){
+  .tiles,.skills,.quals{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero{grid-template-columns:minmax(0,1fr) 200px;gap:40px}
+}
+@media (max-width:760px){
+  header nav{display:none}
+  .hero{grid-template-columns:minmax(0,1fr);padding-block:40px}
+  .phone{max-width:170px;order:-1}
+  .cf1{left:-20px}.cf2{right:-16px}.cf3{left:-12px}
+  .grid{grid-template-columns:minmax(0,1fr)}
+  .job{grid-template-columns:minmax(0,1fr);gap:12px}
+  .edu .row{grid-template-columns:minmax(0,1fr);gap:4px}
+}
+@media (max-width:460px){.tiles,.skills,.quals{grid-template-columns:minmax(0,1fr)}.sh .n{font-size:2.4rem}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+
+<a class="skip" href="#main">Aller au contenu</a>
+<header><div class="in">
+  <a class="logo" href="#top"><i>OD</i>oussama dahri</a>
+  <nav aria-label="Sections"><a href="#experience">Expérience</a><a href="#projets">Projets</a><a href="#competences">Compétences</a><a href="#formation">Formation</a><a href="#contact">Contact</a></nav>
+</div></header>
+
+<main id="main">
+<div class="in" id="top">
+  <div class="hero">
+    <div style="min-width:0">
+      <span class="avail">Disponible · France entière · CDI</span>
+      <h1 class="name">Oussama<span>Dahri</span></h1>
+      <div class="rotor"><span class="fixed" id="fixed">Développeur</span><span class="word" id="word">Android</span></div>
+      <div class="stack" aria-label="Domaines"><span>Mobile</span><span>IA</span><span>Data</span><span>Web</span></div>
+      <p class="pitch">Diplômé d'un <b>Master 2 Sciences des Données</b>, je construis des applications mobiles qui embarquent de l'intelligence artificielle : <b>Android, iOS, Flutter, Kotlin Multiplatform</b> d'un côté, <b>vision, LLM et machine learning</b> de l'autre.</p>
+      <div class="cta"><a class="btn primary" href="#projets">Voir mes projets</a><a class="btn" href="#contact">Me contacter</a></div>
+    </div>
+    <div class="phone" aria-hidden="false">
+      <div class="screen"><img src="assets/photo.jpg" alt="Portrait d'Oussama Dahri"></div>
+      <span class="chip-float cf1">Kotlin · Swift · Flutter</span>
+      <span class="chip-float cf2">Vision · LLM</span>
+      <span class="chip-float cf3">KMP ✓</span>
+    </div>
+  </div>
+
+  <div class="tiles">
+    <a class="tile" href="#experience"><span class="n">01</span><span class="t">Expérience</span><span class="s">Groupe Covéa, application grand public MMA</span><span class="go">Voir →</span></a>
+    <a class="tile" href="#projets"><span class="n">02</span><span class="t">Projets</span><span class="s">9 projets en mobile, IA, web et embarqué</span><span class="go">Voir →</span></a>
+    <a class="tile" href="#competences"><span class="n">03</span><span class="t">Compétences</span><span class="s">Technique et qualités</span><span class="go">Voir →</span></a>
+    <a class="tile" href="#formation"><span class="n">04</span><span class="t">Formation</span><span class="s">Master 2 Sciences des Données, Université de Rouen</span><span class="go">Voir →</span></a>
+  </div>
+
+  <section id="experience">
+    <div class="sh"><span class="n">01</span><h2>Expérience</h2><p>Un produit utilisé par des clients, en équipe Agile.</p></div>
+    <article class="job">
+      <div class="meta"><span class="when">Mars → Sept. 2026</span><span class="org">Groupe Covéa</span><span class="ctx">Le Mans · Stage de fin d'études<br>Application grand public MMA (assurance)</span></div>
+      <div>
+        <h3>Développeur Mobile Android / iOS / Kotlin Multiplatform</h3>
+        <ul class="dots">
+          <li>Nouveaux écrans et fonctionnalités en Kotlin / Jetpack Compose (Android) et SwiftUI (iOS), sur une application en production.</li>
+          <li>Conception d'un socle commun Kotlin Multiplatform (logique métier, modèles de données, couche réseau) partagé entre Android et iOS.</li>
+          <li>MVVM / Clean Architecture, Coroutines / Flow, intégration d'API REST.</li>
+          <li>Tests unitaires (JUnit, Mockito) et tests automatisés de bout en bout avec Appium ; suivi des anomalies.</li>
+          <li>Équipe Scrum (PO, Android, iOS, QA), revues de code, GitLab CI/CD, Jira, Confluence.</li>
+        </ul>
+        <div class="chips"><span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span><span class="chip">SwiftUI</span><span class="chip">KMP</span><span class="chip">Appium</span><span class="chip">GitLab CI</span></div>
+      </div>
+    </article>
+  </section>
+
+  <section id="projets">
+    <div class="sh"><span class="n">02</span><h2>Projets</h2><p>Du modèle d'IA jusqu'à l'application sur le téléphone.</p></div>
+    <div class="filters" role="group" aria-label="Filtrer les projets">
+      <button type="button" data-f="all" aria-pressed="true">Tous</button><button type="button" data-f="ia" aria-pressed="false">IA</button><button type="button" data-f="mobile" aria-pressed="false">Mobile</button><button type="button" data-f="web" aria-pressed="false">Web</button><button type="button" data-f="robot" aria-pressed="false">Embarqué &amp; robotique</button>
+    </div>
+    <div class="grid">
+      <article class="proj" data-tags="ia mobile">
+        <div class="side">
+          <div class="ph"><div class="mono" style="background:linear-gradient(145deg,#2f54eb,#14246e)" aria-hidden="true">BS</div><div><h3>BiblioScan V2</h3><div class="ctx">Sept. 2025 → mars 2026 · équipe de 5 · pour un client</div></div></div>
+          <p>Scanner une étagère en vidéo et reconstituer automatiquement la bibliothèque : titres, auteurs et position de chaque livre.</p>
+        </div>
+        <ul class="dots">
+          <li>YOLOv8, OCR, correction par un LLM local et API Google Books.</li>
+          <li>Trois approches vidéo comparées : VLM, frame par frame, stitching.</li>
+          <li>Architecture client-serveur : Flutter, API REST, base SQL.</li>
+        </ul>
+        <div class="chips"><span class="chip a">YOLOv8</span><span class="chip a">OCR</span><span class="chip a">LLM · Ollama</span><span class="chip">Flutter</span><span class="chip">Python</span><span class="chip">SQL</span></div>
+      </article>
+
+      <article class="proj" data-tags="ia mobile">
+        <div class="ph"><img class="ico" src="assets/icon_instaflore.png" alt=""><div><h3>InstaFlore</h3><div class="ctx">Oct. 2025 → févr. 2026 · binôme · IA embarquée</div></div></div>
+        <p>Reconnaître une fleur en temps réel, depuis la caméra ou la galerie, directement sur le téléphone.</p>
+        <ul class="dots"><li>Overfitting corrigé par transfer learning sur MobileNetV2, puis fine-tuning.</li><li>Data augmentation, Dropout, L2, EarlyStopping ; export TensorFlow Lite dans Flutter.</li></ul>
+        <div class="big"><b>94 %</b> de précision avec 3 670 images</div>
+      </article>
+
+      <article class="proj" data-tags="ia">
+        <div class="ph"><div class="mono" style="background:linear-gradient(145deg,#e0457b,#7a1440)" aria-hidden="true">Y</div><div><h3>Yam's — du hasard à la stratégie</h3><div class="ctx">Nov. 2025 → janv. 2026 · binôme · renforcement</div></div></div>
+        <p>Programmer le jeu du Yams et entraîner des agents qui apprennent seuls à y jouer.</p>
+        <ul class="dots"><li>Processus de décision markovien (~6 millions d'états), reward shaping.</li><li>Comparaison de Monte Carlo, SARSA et Q-learning : le Q-learning s'impose.</li></ul>
+        <div class="chips"><span class="chip a">Q-learning</span><span class="chip a">SARSA</span><span class="chip a">Monte Carlo</span><span class="chip">Python</span></div>
+      </article>
+
+      <article class="proj" data-tags="ia mobile">
+        <div class="ph"><img class="ico" src="assets/icon_chiffres.png" alt=""><div><h3>Chiffres manuscrits</h3><div class="ctx">Déc. 2024 → janv. 2025 · deep learning</div></div></div>
+        <ul class="dots"><li>CNN entraîné sur MNIST, data augmentation, optimisation des hyperparamètres.</li><li>Inférence en temps réel sur le flux caméra avec TensorFlow Lite et OpenCV.</li></ul>
+        <div class="chips"><span class="chip a">CNN</span><span class="chip a">TFLite</span><span class="chip a">OpenCV</span></div>
+      </article>
+
+      <article class="proj" data-tags="mobile ia">
+        <div class="ph"><div class="mono" style="background:linear-gradient(145deg,#2fa36b,#135a39)" aria-hidden="true">V1</div><div><h3>BiblioScan V1</h3><div class="ctx">Mai → juil. 2025 · Android natif</div></div></div>
+        <ul class="dots"><li>YOLO, OCR Google ML Kit, API Google Books.</li><li>Kotlin, MVVM, CameraX ; favoris, historique, mode sombre, tutoriel.</li></ul>
+        <div class="chips"><span class="chip">Kotlin</span><span class="chip">Android</span><span class="chip a">YOLO</span></div>
+      </article>
+
+      <article class="proj" data-tags="web">
+        <div class="ph"><img class="ico" src="assets/icon_taskflow.png" alt=""><div><h3>TaskFlow</h3><div class="ctx">Depuis oct. 2026 · projet personnel</div></div></div>
+        <span class="wip">En cours de développement</span>
+        <p>Gestionnaire de projets en tableaux Kanban, avec glisser-déposer des tâches.</p>
+        <div class="chips"><span class="chip">Next.js 15</span><span class="chip">Prisma</span><span class="chip">PostgreSQL</span><span class="chip">Auth.js</span><span class="chip">dnd-kit</span></div>
+      </article>
+
+      <article class="proj" data-tags="robot">
+        <div class="ph"><div class="mono" style="background:linear-gradient(145deg,#6b7393,#2b3150)" aria-hidden="true">R</div><div><h3>Initiobot &amp; TurtleBot</h3><div class="ctx">Mai → juil. 2024 · robotique ROS2</div></div></div>
+        <ul class="dots"><li>Navigation avec évitement d'obstacles, optimisation des trajectoires.</li><li>Mission finale : cartographie SLAM avec les deux robots.</li></ul>
+        <div class="chips"><span class="chip">ROS2</span><span class="chip">SLAM</span><span class="chip">Python</span></div>
+      </article>
+
+      <article class="proj" data-tags="robot">
+        <div class="ph"><div class="mono" style="background:linear-gradient(145deg,#0f8b8d,#0a4a4b)" aria-hidden="true">RT</div><div><h3>Temps réel sur STM32</h3><div class="ctx">Équipe de 3 · C · FreeRTOS</div></div></div>
+        <p>Une application multitâche temps réel sur microcontrôleur ARM Cortex-M4, qui lit des capteurs et traite leurs mesures.</p>
+        <ul class="dots"><li>Température via l'ADC, accéléromètre 3 axes via le bus SPI, affichage UART.</li><li>Priorités, ordonnancement Rate Monotonic, files de messages entre tâches.</li></ul>
+        <div class="chips"><span class="chip a">STM32</span><span class="chip a">FreeRTOS</span><span class="chip">C</span><span class="chip">SPI · ADC</span></div>
+      </article>
+
+      <article class="proj" data-tags="robot ia">
+        <div class="ph"><div class="mono" style="background:linear-gradient(145deg,#d9822b,#7a3f0a)" aria-hidden="true">N</div><div><h3>Tri sélectif · bras Niryo</h3><div class="ctx">Déc. 2025 · binôme · vision industrielle</div></div></div>
+        <p>Un bras robotique qui repère des pièces par caméra, les classe et les range automatiquement.</p>
+        <ul class="dots"><li>Seuillage HSV, morphologie et analyse des contours avec OpenCV.</li><li>Palettisation ordonnée sur grille, adaptée en mode statique après une panne du convoyeur.</li></ul>
+        <div class="chips"><span class="chip a">OpenCV</span><span class="chip">Python</span><span class="chip">Niryo Ned2</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="competences">
+    <div class="sh"><span class="n">03</span><h2>Compétences</h2><p>Mobile, IA et embarqué, et les qualités qui vont avec.</p></div>
+    <div class="skills">
+      <div class="sk"><h3>Mobile</h3><ul><li>Kotlin · Java</li><li>Jetpack Compose</li><li>Swift · SwiftUI</li><li>Flutter · Dart</li><li>Kotlin Multiplatform</li><li>Coroutines · Flow</li><li>Ionic</li></ul></div>
+      <div class="sk"><h3>IA &amp; Data</h3><ul><li>Python · scikit-learn</li><li>PyTorch · TensorFlow</li><li>YOLO · OpenCV · OCR</li><li>LLM</li><li>Renforcement (Q-learning)</li><li>Traitement du signal · FFT</li><li>Pandas · SQL</li></ul></div>
+      <div class="sk"><h3>Qualité</h3><ul><li>MVVM · Clean Architecture</li><li>JUnit · Mockito</li><li>Appium</li><li>Revues de code</li><li>Agile Scrum</li></ul></div>
+      <div class="sk"><h3>Web &amp; outils</h3><ul><li>Angular · Next.js</li><li>FastAPI</li><li>PostgreSQL · Firebase</li><li>Git · GitLab CI/CD</li><li>Jira · Confluence</li><li>Linux · Bash</li></ul></div>
+      <div class="sk"><h3>Embarqué</h3><ul><li>C · C++</li><li>STM32 · FreeRTOS</li><li>ADC · SPI · I²C · UART</li><li>Arduino · Raspberry Pi</li><li>ROS2 · Niryo</li></ul></div>
+    </div>
+    <h3 class="qh">Qualités</h3>
+    <div class="quals">
+      <div class="q"><b>Curiosité</b><p>Je me forme en continu aux nouvelles technologies, ce qui m'a conduit du mobile natif au multiplateforme, puis à l'IA et au web.</p></div>
+      <div class="q"><b>Persévérance</b><p>Face à un problème complexe, je cherche la cause réelle jusqu'à trouver une solution durable plutôt qu'un contournement.</p></div>
+      <div class="q"><b>Esprit d'équipe</b><p>J'aime travailler avec des profils variés (produit, QA, développeurs Android et iOS) et faire circuler l'information au sein de l'équipe.</p></div>
+      <div class="q"><b>Rigueur et sang-froid</b><p>Je reste calme dans les moments sous pression et m'appuie sur les tests et les revues de code pour livrer un travail fiable.</p></div>
+    </div>
+  </section>
+
+  <section id="formation">
+    <div class="sh"><span class="n">04</span><h2>Formation</h2><p>Électronique d'abord, puis mobile et IA.</p></div>
+    <div class="edu">
+      <div class="row"><span class="when">2024 → 2026</span><div><b>Master Sciences des Données</b><span>Université de Rouen Normandie</span></div></div>
+      <div class="row"><span class="when">2021 → 2024</span><div><b>Licence Électronique, Énergie Électrique &amp; Automatique (EEA)</b><span>Université de Rouen Normandie</span></div></div>
+      <div class="row"><span class="when">2019 → 2021</span><div><b>Cycle Préparatoire Intégré aux Écoles d'Ingénieurs</b><span>Université Internationale de Rabat</span></div></div>
+    </div>
+    <div class="langs"><span class="lang"><b>Français</b> · bilingue</span><span class="lang"><b>Anglais</b> · professionnel</span><span class="lang"><b>Arabe</b> · langue maternelle</span></div>
+  </section>
+</div>
+
+<div class="contact" id="contact"><div class="in">
+  <div class="k">Disponible dès maintenant</div>
+  <h2>Un projet mobile, IA, data ou web&nbsp;? Construisons-le ensemble.</h2>
+  <div class="cards">
+    <div class="cbox"><span>odahri06@gmail.com</span><button class="copy" type="button" data-copy="odahri06@gmail.com">Copier</button></div>
+    <div class="cbox"><span>06 27 57 34 78</span><button class="copy" type="button" data-copy="0627573478">Copier</button></div>
+    <div class="cbox"><a href="https://www.linkedin.com/in/oussama-dahri/" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+  </div>
+</div></div>
+<div class="offscreen"><div class="in">
+  <a class="os-go" href="moi.html#top">En savoir plus sur moi →</a>
+</div></div>
+</main>
+<footer><div class="in"><span>© 2026 Oussama Dahri</span><span>Mobile · IA · Data · Web</span></div></footer>
+
+<script>
+(function(){
+  var titles=[["Développeur","Android"],["Développeur","iOS"],["Développeur","Flutter"],["Développeur","Kotlin Multiplatform"],["Ingénieur","IA embarquée"],["","ML Engineer"],["","Data Scientist"],["Développeur","web"]];
+  var el=document.getElementById('word'), fx=document.getElementById('fixed'); if(!el||!fx) return;
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var i=0;
+  setInterval(function(){el.style.opacity=0;fx.style.opacity=0;setTimeout(function(){i=(i+1)%titles.length;fx.textContent=titles[i][0];fx.hidden=!titles[i][0];el.textContent=titles[i][1];el.style.opacity=1;fx.style.opacity=1},300)},2400);
+})();
+document.querySelectorAll('[data-copy]').forEach(function(b){
+  b.addEventListener('click',function(){
+    var t=b.getAttribute('data-copy'),old=b.textContent;
+    function ok(){b.textContent='Copié ✓';setTimeout(function(){b.textContent=old},1500)}
+    try{navigator.clipboard.writeText(t).then(ok,function(){b.textContent='Sélectionnez'})}catch(e){b.textContent='Sélectionnez'}
+  });
+});
+var fb=document.querySelectorAll('.filters button');
+fb.forEach(function(b){b.addEventListener('click',function(){
+  var f=b.getAttribute('data-f');
+  fb.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+  document.querySelectorAll('.proj').forEach(function(p){p.hidden=!(f==='all'||p.getAttribute('data-tags').split(' ').indexOf(f)>=0)});
+})});
+</script>
+
+</body>
+</html>
