@@ -85,12 +85,21 @@ h2{font-family:var(--f-display);font-weight:700;font-size:clamp(1.5rem,3.4vw,2.2
 .stamp.dream{background:var(--sun);color:var(--sun-ink);border:2px solid var(--sun)}
 .stamp.dream .v{color:var(--sun-ink)}
 /* motto */
-.motto{background:var(--ink);color:var(--bg);border-radius:26px;padding:48px 32px;text-align:center;display:grid;gap:14px;justify-items:center}
-.motto q{font-family:var(--f-display);font-weight:800;font-size:clamp(1.5rem,4vw,2.6rem);line-height:1.15;max-width:20ch;quotes:"« " " »";text-wrap:balance}
-.motto .meter{display:flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:.85rem;opacity:.85}
-.motto .meter span{display:inline-block;width:180px;height:8px;border-radius:8px;background:color-mix(in srgb,var(--bg) 25%,transparent);overflow:hidden}
-.motto .meter span i{display:block;height:100%;width:1%;background:var(--sun);animation:grow 6s ease-in-out infinite alternate}
-@keyframes grow{to{width:100%}}
+.motto{background:var(--ink);color:var(--bg);border-radius:26px;padding:44px 40px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:36px;align-items:end;overflow:hidden}
+.m-k{display:inline-block;font-family:var(--f-mono);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;background:var(--sun);color:var(--sun-ink);padding:5px 12px;border-radius:999px}
+.motto q{display:block;margin-top:18px;font-family:var(--f-display);font-weight:800;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.12;letter-spacing:-.02em;quotes:"« " " »";text-wrap:balance}
+.m-sub{margin:16px 0 0;opacity:.75;font-size:.98rem;max-width:40ch}
+.m-sub b{background:var(--sun);color:var(--sun-ink);padding:1px 7px;border-radius:6px;white-space:nowrap}
+.stairs{display:flex;align-items:flex-end;gap:12px;height:190px}
+.st{flex:1;display:flex;flex-direction:column;align-items:stretch;gap:8px;height:100%;justify-content:flex-end}
+.st i{display:grid;place-items:start center;border-radius:12px 12px 4px 4px;background:color-mix(in srgb,var(--bg) 18%,transparent);transform-origin:bottom;animation:rise 1s cubic-bezier(.2,.8,.2,1) both}
+.st span{font-family:var(--f-mono);font-size:.72rem;text-align:center;opacity:.7}
+.s1 i{height:38%;animation-delay:.1s}.s2 i{height:62%;animation-delay:.25s;background:color-mix(in srgb,var(--bg) 32%,transparent)}
+.s3 i{height:88%;animation-delay:.4s;background:var(--sun)}
+.s3 i b{margin-top:10px;font-family:var(--f-display);font-size:.95rem;color:var(--sun-ink)}
+.s3 span{opacity:1;font-weight:600}
+@keyframes rise{from{transform:scaleY(.1);opacity:0}to{transform:scaleY(1);opacity:1}}
+@media (max-width:640px){.motto{grid-template-columns:minmax(0,1fr);padding:34px 24px;gap:28px}.stairs{height:150px}}
 footer{padding-block:28px;font-size:.85rem;color:var(--muted)}
 footer .in{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
 @media (max-width:860px){
@@ -101,7 +110,7 @@ footer .in{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
   .passport{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:440px){.passport{grid-template-columns:minmax(0,1fr)}}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.motto .meter span i{width:100%}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
 /* hors-écran v2 */
 .langs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:720px}
@@ -145,7 +154,7 @@ footer .in{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
   <div class="hero">
     <span class="k">// côté perso</span>
     <h1>Quand l'écran <em>s'éteint</em></h1>
-    <p class="lead">Ce qui m'anime en dehors du développement.</p>
+    <p class="lead">Ce qui m'anime en dehors du travail.</p>
   </div>
 
 
@@ -156,7 +165,7 @@ footer .in{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
       <div class="tabs" role="tablist" aria-label="Centres d'intérêt">
         <button type="button" role="tab" id="t-foot" aria-controls="p-foot" aria-selected="true"><span class="tt">⚽ Football</span><span class="ts">Jouer et regarder · FC Barcelone</span></button>
         <button type="button" role="tab" id="t-gym" aria-controls="p-gym" aria-selected="false"><span class="tt">🏋️ Musculation</span><span class="ts">Discipline et régularité</span></button>
-        <button type="button" role="tab" id="t-travel" aria-controls="p-travel" aria-selected="false"><span class="tt">✈️ Voyages</span><span class="ts">4 pays visités</span></button>
+        <button type="button" role="tab" id="t-travel" aria-controls="p-travel" aria-selected="false"><span class="tt">✈️ Voyages</span><span class="ts">5 pays visités</span></button>
       </div>
 
       <div class="panel" role="tabpanel" id="p-foot" aria-labelledby="t-foot">
@@ -183,6 +192,7 @@ footer .in{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
           <div class="item"><b><svg class="flag" viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#aa151b"/><rect y="5" width="30" height="10" fill="#f1bf00"/></svg>Espagne</b><span>Barcelone, Alicante, Séville.</span></div>
           <div class="item"><b><svg class="flag" viewBox="0 0 30 20" aria-hidden="true"><rect width="10" height="20" fill="#009246"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ce2b37"/></svg>Italie</b><span>Milan, Côme.</span></div>
           <div class="item"><b><svg class="flag" viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#006aa7"/><rect x="9" width="4" height="20" fill="#fecc00"/><rect y="8" width="30" height="4" fill="#fecc00"/></svg>Suède</b><span>Stockholm.</span></div>
+          <div class="item"><b><svg class="flag" viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#e41e20"/><path d="M15 4l2 2 3-1-1 3 3 1-3 2 1 3-3-1-2 3-2-3-3 1 1-3-3-2 3-1-1-3 3 1z" fill="#000"/></svg>Albanie</b><span>Tirana.</span></div>
         </div>
         <div class="next"><span class="nk">Destination de rêve</span><b><svg class="flag" viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#fff" stroke="#ddd" stroke-width=".6"/><circle cx="15" cy="10" r="6" fill="#bc002d"/></svg>Japon</b><span class="nv">Le pays que je rêve de découvrir.</span></div>
       </div>
@@ -191,8 +201,16 @@ footer .in{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
 
   <section>
     <div class="motto">
-      <span class="k" style="color:inherit;opacity:.7">// ma devise</span>
-      <q>Être meilleur chaque jour que la veille.</q>
+      <div class="m-text">
+        <span class="m-k">Ma devise</span>
+        <q>Être meilleur chaque jour que la veille.</q>
+        <p class="m-sub">Progresser de 1 % par jour, c'est être <b>37 fois</b> meilleur au bout d'un an.</p>
+      </div>
+      <div class="stairs" aria-hidden="true">
+        <div class="st s1"><i></i><span>Hier</span></div>
+        <div class="st s2"><i></i><span>Aujourd'hui</span></div>
+        <div class="st s3"><i><b>+1 %</b></i><span>Demain</span></div>
+      </div>
     </div>
   </section>
 

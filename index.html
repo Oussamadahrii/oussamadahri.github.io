@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: one centered column (max 1120px). Hero = big name beside a phone-shaped portrait; then 4 numbered overview tiles linking to sections; contact closes the page. */
+/* Layout: one centered column (max 1120px). Hero = big name beside an OD monogram ringed by the four domains; then 4 numbered overview tiles linking to sections; contact closes the page. */
 :root{
   --bg:#f6f7fb; --surface:#ffffff; --ink:#101633; --muted:#5b6382; --line:#e2e5ef;
   --accent:#2f54eb; --accent-ink:#ffffff; --accent-soft:#e8edff;
@@ -43,7 +43,7 @@ header nav{display:flex;gap:2px}
 header nav a{font-size:.9rem;font-weight:600;color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:999px}
 header nav a:hover{color:var(--ink);background:var(--surface)}
 /* hero */
-.hero{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:64px;align-items:center;padding-block:72px 64px}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,340px);gap:56px;align-items:center;padding-block:72px 64px}
 .avail{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:.9rem;background:var(--surface);border:1px solid var(--line);padding:7px 14px 7px 10px;border-radius:999px}
 .avail::before{content:"";width:9px;height:9px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.18)}
 .name{font-family:var(--f-display);font-weight:800;font-size:clamp(2.6rem,7.4vw,5.4rem);line-height:.95;letter-spacing:-.035em;margin:24px 0 0;text-transform:uppercase;overflow-wrap:anywhere}
@@ -60,15 +60,15 @@ header nav a:hover{color:var(--ink);background:var(--surface)}
 .btn{font:inherit;font-weight:700;font-size:.95rem;border-radius:999px;padding:12px 22px;text-decoration:none;border:2px solid var(--ink);color:var(--ink);background:transparent;cursor:pointer}
 .btn.primary{background:var(--ink);color:var(--bg)}
 .btn:hover{transform:translateY(-1px)}
-/* phone portrait */
-.phone{width:100%;max-width:220px;aspect-ratio:9/18;background:var(--phone);border-radius:36px;padding:9px;position:relative;box-shadow:0 30px 60px -20px rgba(16,22,51,.45);justify-self:center}
-.phone::before{content:"";position:absolute;top:17px;left:50%;transform:translateX(-50%);width:62px;height:17px;border-radius:10px;background:var(--phone);z-index:2}
-.screen{width:100%;height:100%;border-radius:28px;overflow:hidden;position:relative;background:var(--accent)}
-.screen img{width:100%;height:100%;object-fit:cover;object-position:center 12%;display:block}
-.chip-float{position:absolute;font-family:var(--f-mono);font-size:.72rem;font-weight:500;padding:6px 12px;border-radius:999px;box-shadow:0 10px 24px -10px rgba(16,22,51,.4);white-space:nowrap}
-.cf1{left:-38px;top:18%;background:var(--surface);color:var(--accent);border:1px solid var(--line)}
-.cf2{right:-30px;top:52%;background:var(--ai);color:#fff}
-.cf3{left:-24px;bottom:12%;background:var(--sun);color:var(--sun-ink)}
+/* monogram */
+.mono-hero{position:relative;width:100%;max-width:340px;aspect-ratio:1;justify-self:center;display:grid;place-items:center}
+.orbit{position:absolute;inset:8%;border-radius:50%;border:2px dashed var(--line)}
+.badge{width:46%;aspect-ratio:1;border-radius:30%;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:clamp(2.6rem,6vw,4.2rem);letter-spacing:-.04em;color:#fff;background:linear-gradient(145deg,var(--accent),#14246e);box-shadow:0 30px 60px -22px rgba(47,84,235,.6);transform:rotate(-6deg)}
+.dom{position:absolute;font-family:var(--f-mono);font-size:.8rem;font-weight:500;padding:7px 14px;border-radius:999px;white-space:nowrap;box-shadow:0 10px 24px -12px rgba(16,22,51,.35)}
+.d1{top:2%;left:50%;transform:translateX(-50%);background:var(--surface);color:var(--accent);border:1px solid var(--line)}
+.d2{left:0;top:50%;transform:translateY(-50%);background:var(--ai);color:#fff}
+.d3{right:0;top:50%;transform:translateY(-50%);background:var(--sun);color:var(--sun-ink)}
+.d4{bottom:2%;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg)}
 /* overview tiles */
 .tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;padding-bottom:88px}
 .tile{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px;text-decoration:none;color:var(--ink);display:grid;gap:10px;align-content:start;transition:transform .2s,border-color .2s}
@@ -112,10 +112,12 @@ ul.dots li::before{content:"";position:absolute;left:2px;top:.62em;width:8px;hei
 .wip{display:inline-flex;align-items:center;gap:8px;width:fit-content;font-family:var(--f-mono);font-size:.78rem;font-weight:500;padding:5px 12px;border-radius:999px;background:var(--sun);color:var(--sun-ink)}
 .wip::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor;animation:pulse 1.4s ease-in-out infinite}
 @keyframes pulse{50%{opacity:.25}}
+.demo{align-self:flex-start;font-weight:700;font-size:.9rem;color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:6px 14px;margin-top:4px}
+.demo:hover{background:var(--accent-soft)}
 .big{display:flex;align-items:baseline;gap:10px;background:var(--sun);color:var(--sun-ink);border-radius:14px;padding:12px 16px;font-weight:700}
 .big b{font-family:var(--f-display);font-size:1.8rem;line-height:1}
 /* skills */
-.skills{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 .sk{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px;display:grid;gap:12px;align-content:start}
 .sk h3{font-family:var(--f-display);font-weight:700;font-size:1rem;margin:0}
 .sk ul{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:.95rem}
@@ -155,13 +157,13 @@ footer{padding-block:22px;font-size:.85rem;color:var(--muted)}
 footer .in{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
 @media (max-width:980px){
   .tiles,.skills,.quals{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .hero{grid-template-columns:minmax(0,1fr) 200px;gap:40px}
+  .hero{grid-template-columns:minmax(0,1fr);gap:40px}
+  .mono-hero{max-width:300px}
 }
 @media (max-width:760px){
   header nav{display:none}
   .hero{grid-template-columns:minmax(0,1fr);padding-block:40px}
-  .phone{max-width:170px;order:-1}
-  .cf1{left:-20px}.cf2{right:-16px}.cf3{left:-12px}
+  .mono-hero{max-width:260px;order:-1}
   .grid{grid-template-columns:minmax(0,1fr)}
   .job{grid-template-columns:minmax(0,1fr);gap:12px}
   .edu .row{grid-template-columns:minmax(0,1fr);gap:4px}
@@ -190,11 +192,13 @@ footer .in{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
       <p class="pitch">Diplômé d'un <b>Master 2 Sciences des Données</b>, je construis des applications mobiles qui embarquent de l'intelligence artificielle : <b>Android, iOS, Flutter, Kotlin Multiplatform</b> d'un côté, <b>vision, LLM et machine learning</b> de l'autre.</p>
       <div class="cta"><a class="btn primary" href="#projets">Voir mes projets</a><a class="btn" href="#contact">Me contacter</a></div>
     </div>
-    <div class="phone" aria-hidden="false">
-      <div class="screen"><img src="assets/photo.jpg" alt="Portrait d'Oussama Dahri"></div>
-      <span class="chip-float cf1">Kotlin · Swift · Flutter</span>
-      <span class="chip-float cf2">Vision · LLM</span>
-      <span class="chip-float cf3">KMP ✓</span>
+    <div class="mono-hero" aria-hidden="true">
+      <div class="orbit"></div>
+      <div class="badge">OD</div>
+      <span class="dom d1">Mobile</span>
+      <span class="dom d2">IA</span>
+      <span class="dom d3">Data</span>
+      <span class="dom d4">Embarqué</span>
     </div>
   </div>
 
@@ -243,55 +247,57 @@ footer .in{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
       </article>
 
       <article class="proj" data-tags="ia mobile">
-        <div class="ph"><img class="ico" src="assets/icon_instaflore.png" alt=""><div><h3>InstaFlore</h3><div class="ctx">Oct. 2025 → févr. 2026 · binôme · IA embarquée</div></div></div>
+        <div class="ph"><div class="mono" style="background:linear-gradient(145deg,#8bc34a,#2e7d32)" aria-hidden="true">IF</div><div><h3>InstaFlore</h3><div class="ctx">Oct. 2025 → févr. 2026 · binôme · IA embarquée</div></div></div>
         <p>Reconnaître une fleur en temps réel, depuis la caméra ou la galerie, directement sur le téléphone.</p>
-        <ul class="dots"><li>Overfitting corrigé par transfer learning sur MobileNetV2, puis fine-tuning.</li><li>Data augmentation, Dropout, L2, EarlyStopping ; export TensorFlow Lite dans Flutter.</li></ul>
+        <ul class="dots"><li>Overfitting corrigé par transfer learning sur MobileNetV2, puis fine-tuning.</li><li>Data augmentation, Dropout, L2, EarlyStopping ; export TensorFlow Lite dans Flutter.</li><li>Prétraitement temps réel du flux caméra : conversion en RGB, 224×224, normalisation.</li></ul>
         <div class="big"><b>94 %</b> de précision avec 3 670 images</div>
       </article>
 
       <article class="proj" data-tags="ia">
         <div class="ph"><div class="mono" style="background:linear-gradient(145deg,#e0457b,#7a1440)" aria-hidden="true">Y</div><div><h3>Yam's — du hasard à la stratégie</h3><div class="ctx">Nov. 2025 → janv. 2026 · binôme · renforcement</div></div></div>
         <p>Programmer le jeu du Yams et entraîner des agents qui apprennent seuls à y jouer.</p>
-        <ul class="dots"><li>Processus de décision markovien (~6 millions d'états), reward shaping.</li><li>Comparaison de Monte Carlo, SARSA et Q-learning : le Q-learning s'impose.</li></ul>
+        <ul class="dots"><li>Processus de décision markovien (~6 millions d'états), reward shaping.</li><li>Actions en deux phases : relancer les dés, puis choisir la catégorie.</li><li>Comparaison de Monte Carlo, SARSA et Q-learning : le Q-learning s'impose.</li></ul>
         <div class="chips"><span class="chip a">Q-learning</span><span class="chip a">SARSA</span><span class="chip a">Monte Carlo</span><span class="chip">Python</span></div>
       </article>
 
       <article class="proj" data-tags="ia mobile">
-        <div class="ph"><img class="ico" src="assets/icon_chiffres.png" alt=""><div><h3>Chiffres manuscrits</h3><div class="ctx">Déc. 2024 → janv. 2025 · deep learning</div></div></div>
-        <ul class="dots"><li>CNN entraîné sur MNIST, data augmentation, optimisation des hyperparamètres.</li><li>Inférence en temps réel sur le flux caméra avec TensorFlow Lite et OpenCV.</li></ul>
+        <div class="ph"><div class="mono" style="background:linear-gradient(145deg,#2fa3c7,#14506e)" aria-hidden="true">CM</div><div><h3>Chiffres manuscrits</h3><div class="ctx">Déc. 2024 → janv. 2025 · deep learning</div></div></div>
+        <ul class="dots"><li>Application Android native en Kotlin, architecture MVVM.</li><li>CNN entraîné sur MNIST, data augmentation, optimisation des hyperparamètres.</li><li>Inférence en temps réel sur le flux caméra avec TensorFlow Lite et OpenCV.</li></ul>
         <div class="chips"><span class="chip a">CNN</span><span class="chip a">TFLite</span><span class="chip a">OpenCV</span></div>
       </article>
 
       <article class="proj" data-tags="mobile ia">
         <div class="ph"><div class="mono" style="background:linear-gradient(145deg,#2fa36b,#135a39)" aria-hidden="true">V1</div><div><h3>BiblioScan V1</h3><div class="ctx">Mai → juil. 2025 · Android natif</div></div></div>
-        <ul class="dots"><li>YOLO, OCR Google ML Kit, API Google Books.</li><li>Kotlin, MVVM, CameraX ; favoris, historique, mode sombre, tutoriel.</li></ul>
+        <ul class="dots"><li>Détection des livres avec YOLO et lecture des titres par OCR Google ML Kit.</li><li>Informations complétées via l'API Google Books.</li><li>Kotlin, MVVM, CameraX ; favoris, historique, mode sombre et tutoriel.</li></ul>
         <div class="chips"><span class="chip">Kotlin</span><span class="chip">Android</span><span class="chip a">YOLO</span></div>
       </article>
 
       <article class="proj" data-tags="web">
-        <div class="ph"><img class="ico" src="assets/icon_taskflow.png" alt=""><div><h3>TaskFlow</h3><div class="ctx">Depuis oct. 2026 · projet personnel</div></div></div>
+        <div class="ph"><div class="mono" style="background:linear-gradient(145deg,#ffb020,#c2410c)" aria-hidden="true">TF</div><div><h3>TaskFlow</h3><div class="ctx">Depuis oct. 2026 · projet personnel · full-stack</div></div></div>
         <span class="wip">En cours de développement</span>
-        <p>Gestionnaire de projets en tableaux Kanban, avec glisser-déposer des tâches.</p>
+        <p>Gestion de projets en tableaux Kanban, inspirée de Trello : on organise ses tâches en colonnes et on travaille à plusieurs dans un même espace.</p>
+        <ul class="dots"><li>Tableaux, colonnes et cartes avec glisser-déposer.</li><li>Espaces de travail avec rôles, invitations par lien sécurisé, assignation et commentaires.</li><li>Droits vérifiés côté serveur à chaque action ; tests Vitest, CI GitHub Actions, déploiement Vercel.</li></ul>
+        <a class="demo" href="https://taskflow-qaqx.vercel.app" target="_blank" rel="noopener">Voir la démo ↗</a>
         <div class="chips"><span class="chip">Next.js 15</span><span class="chip">Prisma</span><span class="chip">PostgreSQL</span><span class="chip">Auth.js</span><span class="chip">dnd-kit</span></div>
       </article>
 
       <article class="proj" data-tags="robot">
         <div class="ph"><div class="mono" style="background:linear-gradient(145deg,#6b7393,#2b3150)" aria-hidden="true">R</div><div><h3>Initiobot &amp; TurtleBot</h3><div class="ctx">Mai → juil. 2024 · robotique ROS2</div></div></div>
-        <ul class="dots"><li>Navigation avec évitement d'obstacles, optimisation des trajectoires.</li><li>Mission finale : cartographie SLAM avec les deux robots.</li></ul>
+        <ul class="dots"><li>Nœuds de contrôle en Python sous ROS2, sur Raspberry Pi.</li><li>Navigation avec évitement d'obstacles, optimisation des trajectoires.</li><li>Mission finale : cartographie SLAM avec les deux robots.</li></ul>
         <div class="chips"><span class="chip">ROS2</span><span class="chip">SLAM</span><span class="chip">Python</span></div>
       </article>
 
       <article class="proj" data-tags="robot">
         <div class="ph"><div class="mono" style="background:linear-gradient(145deg,#0f8b8d,#0a4a4b)" aria-hidden="true">RT</div><div><h3>Temps réel sur STM32</h3><div class="ctx">Équipe de 3 · C · FreeRTOS</div></div></div>
         <p>Une application multitâche temps réel sur microcontrôleur ARM Cortex-M4, qui lit des capteurs et traite leurs mesures.</p>
-        <ul class="dots"><li>Température via l'ADC, accéléromètre 3 axes via le bus SPI, affichage UART.</li><li>Priorités, ordonnancement Rate Monotonic, files de messages entre tâches.</li></ul>
+        <ul class="dots"><li>Température via l'ADC, accéléromètre 3 axes via le bus SPI, affichage UART.</li><li>Priorités, ordonnancement Rate Monotonic, files de messages entre tâches.</li><li>Tâches périodiques à fréquences différentes et moyennes calculées sur 10 mesures.</li></ul>
         <div class="chips"><span class="chip a">STM32</span><span class="chip a">FreeRTOS</span><span class="chip">C</span><span class="chip">SPI · ADC</span></div>
       </article>
 
       <article class="proj" data-tags="robot ia">
         <div class="ph"><div class="mono" style="background:linear-gradient(145deg,#d9822b,#7a3f0a)" aria-hidden="true">N</div><div><h3>Tri sélectif · bras Niryo</h3><div class="ctx">Déc. 2025 · binôme · vision industrielle</div></div></div>
         <p>Un bras robotique qui repère des pièces par caméra, les classe et les range automatiquement.</p>
-        <ul class="dots"><li>Seuillage HSV, morphologie et analyse des contours avec OpenCV.</li><li>Palettisation ordonnée sur grille, adaptée en mode statique après une panne du convoyeur.</li></ul>
+        <ul class="dots"><li>Calibration automatique et position de vision au-dessus de l'espace de travail.</li><li>Seuillage HSV, morphologie et analyse des contours avec OpenCV.</li><li>Palettisation ordonnée sur grille, adaptée en mode statique après une panne du convoyeur.</li></ul>
         <div class="chips"><span class="chip a">OpenCV</span><span class="chip">Python</span><span class="chip">Niryo Ned2</span></div>
       </article>
     </div>
@@ -302,9 +308,10 @@ footer .in{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
     <div class="skills">
       <div class="sk"><h3>Mobile</h3><ul><li>Kotlin · Java</li><li>Jetpack Compose</li><li>Swift · SwiftUI</li><li>Flutter · Dart</li><li>Kotlin Multiplatform</li><li>Coroutines · Flow</li><li>Ionic</li></ul></div>
       <div class="sk"><h3>IA &amp; Data</h3><ul><li>Python · scikit-learn</li><li>PyTorch · TensorFlow</li><li>YOLO · OpenCV · OCR</li><li>LLM</li><li>Renforcement (Q-learning)</li><li>Traitement du signal · FFT</li><li>Pandas · SQL</li></ul></div>
-      <div class="sk"><h3>Qualité</h3><ul><li>MVVM · Clean Architecture</li><li>JUnit · Mockito</li><li>Appium</li><li>Revues de code</li><li>Agile Scrum</li></ul></div>
-      <div class="sk"><h3>Web &amp; outils</h3><ul><li>Angular · Next.js</li><li>FastAPI</li><li>PostgreSQL · Firebase</li><li>Git · GitLab CI/CD</li><li>Jira · Confluence</li><li>Linux · Bash</li></ul></div>
+      <div class="sk"><h3>Web</h3><ul><li>Angular · Next.js</li><li>FastAPI · Django</li><li>PostgreSQL · Prisma</li><li>Firebase</li><li>Auth.js · Zod</li></ul></div>
       <div class="sk"><h3>Embarqué</h3><ul><li>C · C++</li><li>STM32 · FreeRTOS</li><li>ADC · SPI · I²C · UART</li><li>Arduino · Raspberry Pi</li><li>ROS2 · Niryo</li></ul></div>
+      <div class="sk"><h3>Qualité</h3><ul><li>MVVM · Clean Architecture</li><li>JUnit · Mockito · Vitest</li><li>Appium</li><li>Revues de code</li><li>Agile Scrum</li></ul></div>
+      <div class="sk"><h3>Outils</h3><ul><li>Git · GitLab CI/CD</li><li>GitHub Actions · Vercel</li><li>Jira · Confluence</li><li>Postman · Bruno</li><li>Linux · Bash</li></ul></div>
     </div>
     <h3 class="qh">Qualités</h3>
     <div class="quals">
